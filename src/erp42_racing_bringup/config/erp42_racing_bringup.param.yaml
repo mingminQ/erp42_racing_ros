@@ -1,0 +1,13 @@
+# erp42_racing_bringup.param.yaml
+
+erp42_racing_serial_bridge:
+  ros__parameters:
+
+    # Serial port settings
+    port_path: "/dev/ttyUSB0"
+    baud_rate: 115200
+
+    # ERP42 Racing parameters
+    max_speed_mps      :  5.50 # m/s
+    max_steering_deg   : 20.00 # deg
+    steering_offset_deg:  0.00 # deg
