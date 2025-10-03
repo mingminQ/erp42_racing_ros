@@ -93,9 +93,9 @@ void erp42_racing::GazeboBridge::joint_state_callback(const sensor_msgs::msg::Jo
     double current_wheel_angle = msg->position[rear_left_wheel_index];
     double delta_wheel_angle = std::remainder(current_wheel_angle - prev_rear_left_wheel_angle_, 2.0 * M_PI);
 
-    if(0.1308996939 < std::abs(delta_wheel_angle))
+    if((2.0 * M_PI / ENCODER_CPR) < std::abs(delta_wheel_angle))
     {
-        encoder_count_ += static_cast<int>(delta_wheel_angle / (2.0 * M_PI) * ENCODER_PPR_DBL);
+        encoder_count_ += static_cast<int>(delta_wheel_angle / (2.0 * M_PI) * ENCODER_CPR);
         prev_rear_left_wheel_angle_ = current_wheel_angle;
     }
 }

@@ -44,8 +44,8 @@ namespace erp42_racing
     static constexpr double REAR_WHEEL_WIDTH   {0.170};
 
     // Encoder parameters
-    static constexpr int    ENCODER_PPR_INT {48};
-    static constexpr double ENCODER_PPR_DBL {48.0};
+    static constexpr double ENCODER_PPR {48.0};
+    static constexpr double ENCODER_CPR {192.0};
 
 } // namespace erp42_racing
 
