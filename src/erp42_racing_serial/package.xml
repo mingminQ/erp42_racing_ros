@@ -14,12 +14,16 @@
     <license>Apache-2.0</license>
 
     <!-- Build tool : ament_cmake -->
-    <buildtool_depend>ament_cmake</buildtool_depend>
+    <buildtool_depend>erp42_racing_cmake</buildtool_depend>
 
     <!-- Dependencies -->
+    <depend>rclcpp_components</depend>
     <depend>rclcpp           </depend>
-    <depend>erp42_racing_msgs</depend>
-    <depend>erp42_racing_util</depend>
+    <depend>nav_msgs         </depend>
+
+    <depend>erp42_racing_msgs       </depend>
+    <depend>erp42_racing_util       </depend>
+    <depend>erp42_racing_description</depend>
 
     <!-- Export build system information -->
     <export>

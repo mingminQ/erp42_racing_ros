@@ -27,7 +27,7 @@
 #ifndef ERP42_RACING_SERIAL__SERIAL_PACKET_HPP_
 #define ERP42_RACING_SERIAL__SERIAL_PACKET_HPP_
 
-namespace erp42_racing
+namespace erp42_racing::serial
 {
     // ERP42 serial tx packet index mapping
     namespace TX
@@ -100,6 +100,6 @@ namespace erp42_racing
     // Raw battery -> Battery Voltage (V)
     static constexpr double BYTE2BAT {0.1};
 
-} // namespace erp42_racing
+} // namespace erp42_racing::serial
 
 #endif // ERP42_RACING_SERIAL__SERIAL_PACKET_HPP_

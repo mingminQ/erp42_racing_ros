@@ -47,8 +47,8 @@ using std::placeholders::_2;
  * @details Initializes the base Node with name "erp42_racing_serial", 
  * resets the heartbeat counter to zero.
  */
-erp42_racing::SerialBridge::SerialBridge()
-  : Node("erp42_racing_serial_bridge"),
+erp42_racing::serial::SerialBridge::SerialBridge(const rclcpp::NodeOptions &options)
+  : Node("erp42_racing_serial_bridge", options),
     heartbeat_(0)
 {
     declare_parameters();
@@ -59,7 +59,7 @@ erp42_racing::SerialBridge::SerialBridge()
  * @brief Default class destructor
  * @details Destroys the SerialBridge node, closing and deallocating the serial port.
  */
-erp42_racing::SerialBridge::~SerialBridge()
+erp42_racing::serial::SerialBridge::~SerialBridge()
 {
     // Close and deallocate serial port
     if(!serial_port_)
@@ -80,7 +80,7 @@ erp42_racing::SerialBridge::~SerialBridge()
  * and publishes it to the feedback topic.
  * @return 'true' if the packet was received, parsed, and published successfully; 'false' otherwise.
  */
-bool erp42_racing::SerialBridge::receive_feedback()
+bool erp42_racing::serial::SerialBridge::receive_feedback()
 {
     // Failed to receive packet
     if(!serial_port_->receive_packet(rx_packet_.data(), RX::PACKET_SIZE))
@@ -160,7 +160,7 @@ bool erp42_racing::SerialBridge::receive_feedback()
  *   - Sends the packet via 'serial_port_->transmit_packet()'.  
  * @return 'true' if the packet was transmitted successfully; 'false' otherwise.
  */
-bool erp42_racing::SerialBridge::transmit_command()
+bool erp42_racing::serial::SerialBridge::transmit_command()
 {
     // Set packet protocols
     tx_packet_[TX::STX_S] = 0x53;
@@ -180,7 +180,7 @@ bool erp42_racing::SerialBridge::transmit_command()
  * @brief Periodic timer callback for serial communication.
  * @details Calls 'receive_feedback()', 'transmit_command()', and increments the heartbeat counter.
  */
-void erp42_racing::SerialBridge::timer_callback()
+void erp42_racing::serial::SerialBridge::timer_callback()
 {
     transmit_command();
     receive_feedback();
@@ -196,7 +196,7 @@ void erp42_racing::SerialBridge::timer_callback()
  *   - Sets EMERGENCY_STOP flag based on 'msg.emergency_stop'.  
  *   - Sets GEAR field to 'msg.gear'.
  */
-void erp42_racing::SerialBridge::mode_command_callback(
+void erp42_racing::serial::SerialBridge::mode_command_callback(
     const erp42_racing_msgs::srv::ModeCommand::Request::SharedPtr request,
     erp42_racing_msgs::srv::ModeCommand::Response::SharedPtr response)
 {
@@ -221,7 +221,7 @@ void erp42_racing::SerialBridge::mode_command_callback(
  *   - Adjusts steering by offset, clamps to ±max_steering_rad_, and converts to raw units.  
  *   - Inserts brake value directly into the packet.
  */
-void erp42_racing::SerialBridge::control_command_callback(const erp42_racing_msgs::msg::ControlCommand::SharedPtr msg)
+void erp42_racing::serial::SerialBridge::control_command_callback(const erp42_racing_msgs::msg::ControlCommand::SharedPtr msg)
 {
     // Speed (m/s to motor raw command)
     double speed = msg->speed < 0 ? 0 : msg->speed;
@@ -245,7 +245,7 @@ void erp42_racing::SerialBridge::control_command_callback(const erp42_racing_msg
 }
 
 /** @brief Initializes timers, publishers, subscriptions, and the serial port. */
-void erp42_racing::SerialBridge::initialize_node()
+void erp42_racing::serial::SerialBridge::initialize_node()
 {
     // Timer
     timer_ = this->create_wall_timer(20ms, std::bind(&SerialBridge::timer_callback, this));
@@ -282,7 +282,7 @@ void erp42_racing::SerialBridge::initialize_node()
 }
 
 /** @brief Declares and retrieves ROS2 parameters for serial and ERP42 Racing configuration. */
-void erp42_racing::SerialBridge::declare_parameters()
+void erp42_racing::serial::SerialBridge::declare_parameters()
 {
     // Serial port
     this->declare_parameter<std::string>("port_path", "/dev/ttyUSB0");
@@ -301,3 +301,6 @@ void erp42_racing::SerialBridge::declare_parameters()
     this->declare_parameter<double>("steering_offset_deg", 0.0);
     steering_offset_rad_ = this->get_parameter("steering_offset_deg").as_double() * M_PI / 180.0;
 }
+
+#include <rclcpp_components/register_node_macro.hpp>
+RCLCPP_COMPONENTS_REGISTER_NODE(erp42_racing::serial::SerialBridge)

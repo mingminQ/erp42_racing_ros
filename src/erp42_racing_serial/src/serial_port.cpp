@@ -38,7 +38,7 @@
  * @param port_path Filesystem path to the serial device (e.g., "/dev/ttyUSB0").
  * @param baud_rate Communication speed in bits per second (e.g., 115200).
  */
-erp42_racing::SerialPort::SerialPort(const std::string &port_path, const int &baud_rate)
+erp42_racing::serial::SerialPort::SerialPort(const std::string &port_path, const int &baud_rate)
   : port_path_(port_path),
     baud_rate_(baud_rate),
     file_descriptor_(-1)
@@ -51,7 +51,7 @@ erp42_racing::SerialPort::SerialPort(const std::string &port_path, const int &ba
  * Throws an exception if the path is empty or opening fails.
  * On success, calls @c initialize_port() to configure the port.
  */
-void erp42_racing::SerialPort::open_port()
+void erp42_racing::serial::SerialPort::open_port()
 {
     if(port_path_.empty())
     {
@@ -76,7 +76,7 @@ void erp42_racing::SerialPort::open_port()
  * @details Closes the file descriptor associated with the serial port.
  * Throws an exception if the descriptor is invalid or closing fails.
  */
-void erp42_racing::SerialPort::close_port()
+void erp42_racing::serial::SerialPort::close_port()
 {
     if (file_descriptor_ < 0) 
     {
@@ -101,7 +101,7 @@ void erp42_racing::SerialPort::close_port()
  * @param expected_packet_size Number of bytes expected to read.
  * @return 'true' if the received packet size matches 'expected_packet_size'; 'false' otherwise.
  */
-bool erp42_racing::SerialPort::receive_packet(
+bool erp42_racing::serial::SerialPort::receive_packet(
     unsigned char *rx_packet, const unsigned int &expected_packet_size
 ) const
 {
@@ -128,7 +128,7 @@ bool erp42_racing::SerialPort::receive_packet(
  * @param expected_packet_size Number of bytes to transmit.
  * @return 'true' if the data was written successfully; 'false' otherwise.
  */
-bool erp42_racing::SerialPort::transmit_packet(
+bool erp42_racing::serial::SerialPort::transmit_packet(
     const unsigned char *tx_packet, const unsigned int &expected_packet_size
 ) const
 {
@@ -156,7 +156,7 @@ bool erp42_racing::SerialPort::transmit_packet(
  * and 1 stop bit. Supports baud rates 9600 and 115200. 
  * Throws an exception if configuration fails or the baud rate is invalid.
  */
-void erp42_racing::SerialPort::initialize_port()
+void erp42_racing::serial::SerialPort::initialize_port()
 {
     struct termios tty;
     memset(&tty, 0, sizeof(tty));

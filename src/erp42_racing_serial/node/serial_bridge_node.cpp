@@ -30,11 +30,11 @@
 int main(int argc, char *argv[])
 {
     rclcpp::init(argc, argv);
-    std::shared_ptr<erp42_racing::SerialBridge> node;
+    std::shared_ptr<erp42_racing::serial::SerialBridge> node;
 
     try
     {
-        node = std::make_shared<erp42_racing::SerialBridge>();
+        node = std::make_shared<erp42_racing::serial::SerialBridge>();
         rclcpp::spin(node);
     }
     catch(const std::exception &ex)
