@@ -18,13 +18,11 @@ If you have any suggestions or issues, please contact me using the information b
 # Package overview
 For more information about the package, please read the README.md at the link below.
 
-- **ERP42 Racing bringup :** [erp42_racing_bringup](https://github.com/mingminQ/erp42_racing_ros/tree/humble/src/erp42_racing_bringup)
-
 - **ERP42 Racing description files :** [erp42_racing_description](https://github.com/mingminQ/erp42_racing_ros/tree/humble/src/erp42_racing_description)
 
 - **ERP42 Racing gazebo simulation :** [erp42_racing_gazebo](https://github.com/mingminQ/erp42_racing_ros/tree/humble/src/erp42_racing_gazebo)
 
-- **ERP42 Racing GUI :** [erp42_racing_gui](https://github.com/mingminQ/erp42_racing_ros/tree/humble/src/erp42_racing_gui)
+- **ERP42 Racing GUI :** [erp42_racing_rqt_plugin](https://github.com/mingminQ/erp42_racing_ros/tree/humble/src/erp42_racing_rqt_plugin)
 
 - **ERP42 Racing ROS2 communication interfaces :** [erp42_racing_msgs](https://github.com/mingminQ/erp42_racing_ros/tree/humble/src/erp42_racing_msgs)
 
