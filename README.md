@@ -22,7 +22,7 @@ For more information about the package, please read the README.md at the link be
 
 - **ERP42 Racing gazebo simulation :** [erp42_racing_gazebo](https://github.com/mingminQ/erp42_racing_ros/tree/humble/src/erp42_racing_gazebo)
 
-- **ERP42 Racing GUI :** [erp42_racing_rqt_plugin](https://github.com/mingminQ/erp42_racing_ros/tree/humble/src/erp42_racing_rqt_plugin)
+- **ERP42 Racing RQT Plugin :** [erp42_racing_rqt_plugin](https://github.com/mingminQ/erp42_racing_ros/tree/humble/src/erp42_racing_rqt_plugin)
 
 - **ERP42 Racing ROS2 communication interfaces :** [erp42_racing_msgs](https://github.com/mingminQ/erp42_racing_ros/tree/humble/src/erp42_racing_msgs)
 
