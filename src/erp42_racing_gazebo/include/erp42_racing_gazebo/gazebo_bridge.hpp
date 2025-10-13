@@ -39,7 +39,7 @@
 #include <vector>
 #include <string>
 
-namespace erp42_racing
+namespace erp42_racing::gazebo
 {
     /**
      * @brief ROS2 Gazebo bridge for ERP42 Racing commands and feedback.
@@ -60,7 +60,7 @@ namespace erp42_racing
          * - Declares parameters before wiring ROS interfaces so that publishers/subscribers/services
          *   and initial state can use parameterized limits/offsets.
          */
-        GazeboBridge();
+        explicit GazeboBridge(const rclcpp::NodeOptions &options = rclcpp::NodeOptions());
 
         /**
          * @brief Destructor.
@@ -205,6 +205,6 @@ namespace erp42_racing
 
     }; // class GazeboBridge
 
-} // namespace erp42_racing
+} // namespace erp42_racing::gazebo
 
 #endif // ERP42_RACING_GAZEBO__GAZEBO_BRIDGE_HPP_
