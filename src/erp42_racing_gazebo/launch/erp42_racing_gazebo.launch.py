@@ -8,21 +8,6 @@ from launch.conditions import IfCondition
 from launch_ros.actions import Node
 from launch_ros.substitutions import FindPackageShare
 
-def check_conflict(context, *args, **kwargs):
-    
-    view_control_panel    = LaunchConfiguration('view_control_panel').perform(context)
-    view_feedback_monitor = LaunchConfiguration('view_feedback_monitor').perform(context)
-
-    if view_control_panel.lower() == 'true' and view_feedback_monitor.lower() == 'true':
-        return [
-            LogInfo(msg="view_control_panel and view_feedback_monitor cannot both be true. "
-                "Since control_panel already includes feedback_monitor, choose only one of them."
-            ),
-            Shutdown()
-        ]
-
-    return []
-
 def generate_launch_description():
 
     # ERP42 Racing gazebo parameter file
@@ -41,10 +26,6 @@ def generate_launch_description():
     vehicle_description_file = DeclareLaunchArgument('vehicle_description_file', 
         default_value = PathJoinSubstitution([FindPackageShare('erp42_racing_gazebo'), 'urdf', 'erp42_racing_gazebo.xacro'])
     )
-
-    # GUI option
-    view_control_panel    = DeclareLaunchArgument('view_control_panel'   , default_value = 'false')
-    view_feedback_monitor = DeclareLaunchArgument('view_feedback_monitor', default_value = 'false')
 
     # Rviz configuration file
     rviz_config_file = DeclareLaunchArgument('rviz_config_file',
@@ -99,24 +80,6 @@ def generate_launch_description():
         parameters = [LaunchConfiguration('erp42_racing_gazebo_parameter_file')],
     )
 
-    # Control panel GUI
-    erp42_racing_control_panel = Node(
-        package    = 'erp42_racing_gui', 
-        executable = 'control_panel', 
-        output     = 'screen',
-        parameters = [LaunchConfiguration('erp42_racing_gazebo_parameter_file')],
-        condition  = IfCondition(LaunchConfiguration('view_control_panel'))
-    )
-
-    # Feedback monitor GUI
-    erp42_racing_feedback_monitor = Node(
-        package    = 'erp42_racing_gui', 
-        executable = 'feedback_monitor', 
-        output     = 'screen',
-        parameters = [LaunchConfiguration('erp42_racing_gazebo_parameter_file')],
-        condition  = IfCondition(LaunchConfiguration('view_feedback_monitor'))
-    )
-
     # Spawn ERP42 Racing entity in Gazebo
     spawn_entity = Node(
         package    = "gazebo_ros",
@@ -150,9 +113,6 @@ def generate_launch_description():
         erp42_racing_gazebo_parameter_file,
         world_file,
         vehicle_description_file,
-        view_control_panel,
-        view_feedback_monitor,
-        OpaqueFunction(function=check_conflict),
         rviz_config_file,
         spawn_x,
         spawn_y,
@@ -164,8 +124,6 @@ def generate_launch_description():
         gazebo_client,
         robot_state_publisher,
         gazebo_bridge,
-        erp42_racing_control_panel,
-        erp42_racing_feedback_monitor,
         spawn_entity,
         rviz
     ])
