@@ -1,4 +1,4 @@
-# erp42_racing_gazebo.launch.py
+# gazebo.launch.py
 
 from launch import LaunchDescription
 from launch.actions import DeclareLaunchArgument, ExecuteProcess, OpaqueFunction, LogInfo, Shutdown
@@ -11,7 +11,7 @@ from launch_ros.substitutions import FindPackageShare
 def generate_launch_description():
 
     # ERP42 Racing gazebo parameter file
-    erp42_racing_gazebo_parameter_file = DeclareLaunchArgument('erp42_racing_gazebo_parameter_file', 
+    erp42_racing_gazebo_parameter = DeclareLaunchArgument('erp42_racing_gazebo_parameter', 
         default_value=PathJoinSubstitution([
             FindPackageShare('erp42_racing_gazebo'), 'config', 'erp42_racing_gazebo.param.yaml'
         ])
@@ -60,7 +60,7 @@ def generate_launch_description():
 
     # Robot state publisher node
     robot_state_publisher = Node(
-        namespace  = '/erp42_racing',
+        namespace  = 'erp42_racing',
         package    = 'robot_state_publisher',
         executable = 'robot_state_publisher',
         output     = 'screen',
@@ -68,7 +68,7 @@ def generate_launch_description():
             'robot_description': Command(['xacro ', LaunchConfiguration('vehicle_description_file')]),
             'publish_frequency': 100.0
             },
-            LaunchConfiguration('erp42_racing_gazebo_parameter_file')
+            LaunchConfiguration('erp42_racing_gazebo_parameter')
         ]
     )
 
@@ -77,7 +77,7 @@ def generate_launch_description():
         package    = 'erp42_racing_gazebo',
         executable = 'gazebo_bridge',
         output     = 'screen',
-        parameters = [LaunchConfiguration('erp42_racing_gazebo_parameter_file')],
+        parameters = [LaunchConfiguration('erp42_racing_gazebo_parameter')],
     )
 
     # Spawn ERP42 Racing entity in Gazebo
@@ -85,7 +85,7 @@ def generate_launch_description():
         package    = "gazebo_ros",
         executable = "spawn_entity.py",
         output     = "screen",
-        parameters = [LaunchConfiguration('erp42_racing_gazebo_parameter_file')],
+        parameters = [LaunchConfiguration('erp42_racing_gazebo_parameter')],
         arguments  = [
             "-topic" , "/erp42_racing/robot_description",
             "-entity", "erp42_racing",
@@ -100,17 +100,17 @@ def generate_launch_description():
 
     # Rviz
     rviz = Node(
-        namespace  = '/erp42_racing',
+        namespace  = 'erp42_racing',
         package    = 'rviz2',
         executable = 'rviz2',
         name       = 'rviz2',
         output     = 'screen',
         arguments  = ['-d', LaunchConfiguration('rviz_config_file')],
-        parameters = [LaunchConfiguration('erp42_racing_gazebo_parameter_file')]
+        parameters = [LaunchConfiguration('erp42_racing_gazebo_parameter')]
     )
 
     return LaunchDescription([
-        erp42_racing_gazebo_parameter_file,
+        erp42_racing_gazebo_parameter,
         world_file,
         vehicle_description_file,
         rviz_config_file,

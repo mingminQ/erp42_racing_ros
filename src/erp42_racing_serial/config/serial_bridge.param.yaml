@@ -1,6 +1,6 @@
-# erp42_racing_serial_bridge.param.yaml
+# serial_bridge.param.yaml
 
-erp42_serial_bridge:
+serial_bridge:
   ros__parameters:
 
     # Serial port settings

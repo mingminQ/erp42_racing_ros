@@ -29,8 +29,8 @@
 int main(int argc, char **argv)
 {
     rclcpp::init(argc, argv);
-    std::shared_ptr<erp42_racing::gazebo::GazeboBridge> node = 
-        std::make_shared<erp42_racing::gazebo::GazeboBridge>();
+    std::shared_ptr<erp42_racing_gazebo::GazeboBridge> node = 
+        std::make_shared<erp42_racing_gazebo::GazeboBridge>();
 
     rclcpp::spin(node);
     rclcpp::shutdown();

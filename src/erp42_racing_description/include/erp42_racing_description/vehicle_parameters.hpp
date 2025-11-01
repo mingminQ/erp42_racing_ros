@@ -27,7 +27,7 @@
 #ifndef ERP42_RACING_DESCRIPTION__VEHICLE_PARAMETERS_HPP_
 #define ERP42_RACING_DESCRIPTION__VEHICLE_PARAMETERS_HPP_
 
-namespace erp42_racing
+namespace erp42_racing_description
 {
     // ERP42 RACING kinematic parameters
     static constexpr double BASE_X_SIZE {2.060};
@@ -47,6 +47,6 @@ namespace erp42_racing
     static constexpr double ENCODER_PPR {48.0};
     static constexpr double ENCODER_CPR {192.0};
 
-} // namespace erp42_racing
+} // namespace erp42_racing_description
 
 #endif // ERP42_RACING_DESCRIPTION__VEHICLE_PARAMETERS_HPP_

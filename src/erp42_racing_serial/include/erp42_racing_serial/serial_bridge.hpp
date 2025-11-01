@@ -38,7 +38,7 @@
 #include <string>
 #include <array>
 
-namespace erp42_racing::serial
+namespace erp42_racing_serial
 {
     /**
      * @brief ROS2 node for serial communication on the ERP42 Racing platform.
@@ -151,6 +151,6 @@ namespace erp42_racing::serial
 
     }; // class SerialBridge
 
-} // namespace erp42_racing::serial
+} // namespace erp42_racing_serial
 
 #endif // ERP42_RACING_SERIAL__SERIAL_BRIDGE_HPP_

@@ -2,7 +2,7 @@
 <library path = "erp42_racing_rqt_plugin">
 
     <!-- ERP42 Racing control panel -->
-    <class name = "erp42_racing/rqt_plugin/ControlPanelPlugin" type = "erp42_racing::rqt_plugin::ControlPanelPlugin" base_class_type = "rqt_gui_cpp::Plugin">
+    <class name = "erp42_racing/rqt_plugin/ControlPanelPlugin" type = "erp42_racing_rqt_plugin::ControlPanelPlugin" base_class_type = "rqt_gui_cpp::Plugin">
         <description>ERP42 Racing Control Panel</description>
         <qtgui>
             <group>
@@ -18,7 +18,7 @@
     </class>
 
     <!-- ERP42 Racing feedback monitor -->
-    <class name = "erp42_racing/rqt_plugin/FeedbackMonitorPlugin" type = "erp42_racing::rqt_plugin::FeedbackMonitorPlugin" base_class_type = "rqt_gui_cpp::Plugin">
+    <class name = "erp42_racing/rqt_plugin/FeedbackMonitorPlugin" type = "erp42_racing_rqt_plugin::FeedbackMonitorPlugin" base_class_type = "rqt_gui_cpp::Plugin">
         <description>ERP42 Racing Feedback Monitor</description>
         <qtgui>
             <group>

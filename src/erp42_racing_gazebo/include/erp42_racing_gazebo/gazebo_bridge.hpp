@@ -39,7 +39,7 @@
 #include <vector>
 #include <string>
 
-namespace erp42_racing::gazebo
+namespace erp42_racing_gazebo
 {
     /**
      * @brief ROS2 Gazebo bridge for ERP42 Racing commands and feedback.
@@ -205,6 +205,6 @@ namespace erp42_racing::gazebo
 
     }; // class GazeboBridge
 
-} // namespace erp42_racing::gazebo
+} // namespace erp42_racing_gazebo
 
 #endif // ERP42_RACING_GAZEBO__GAZEBO_BRIDGE_HPP_

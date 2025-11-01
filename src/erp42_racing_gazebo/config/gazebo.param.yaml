@@ -8,7 +8,7 @@
     use_sim_time: true
 
 # Parameters for erp42_racing_gazebo_bridge
-erp42_racing_gazebo_bridge:
+gazebo_bridge:
   ros__parameters:
 
     # ERP42 parameters
