@@ -6,6 +6,5 @@ float64 speed
 # Steering angle (rad)
 float64 steering
 
-# Brake
-# ERP42 (0 - 150)
+# Brake (0 - 100)
 uint8 brake

@@ -51,7 +51,7 @@ namespace erp42_racing_serial
 
         /**
          * @brief Default class contructor
-         * @details Initializes the base Node with name "erp42_racing_serial", 
+         * @details Initializes the base Node with name "serial_bridge", 
          * resets the heartbeat counter to zero.
          */
         explicit SerialBridge(const rclcpp::NodeOptions &options = rclcpp::NodeOptions());

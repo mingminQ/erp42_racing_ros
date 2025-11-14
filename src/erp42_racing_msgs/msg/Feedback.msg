@@ -21,8 +21,7 @@ float64 speed
 # Steering angle (rad)
 float64 steering
 
-# Braking 
-# ERP42 (0 - 150)
+# Braking (0 - 100)
 uint8 brake
 
 # Encoder count (-2^31 - 2^31)
