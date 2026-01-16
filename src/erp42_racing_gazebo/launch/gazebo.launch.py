@@ -11,9 +11,9 @@ from launch_ros.substitutions import FindPackageShare
 def generate_launch_description():
 
     # ERP42 Racing gazebo parameter file
-    erp42_racing_gazebo_parameter = DeclareLaunchArgument('erp42_racing_gazebo_parameter', 
+    gazebo_parameter = DeclareLaunchArgument('gazebo_parameter', 
         default_value=PathJoinSubstitution([
-            FindPackageShare('erp42_racing_gazebo'), 'config', 'erp42_racing_gazebo.param.yaml'
+            FindPackageShare('erp42_racing_gazebo'), 'config', 'gazebo.param.yaml'
         ])
     )
 
@@ -68,7 +68,7 @@ def generate_launch_description():
             'robot_description': Command(['xacro ', LaunchConfiguration('vehicle_description_file')]),
             'publish_frequency': 100.0
             },
-            LaunchConfiguration('erp42_racing_gazebo_parameter')
+            LaunchConfiguration('gazebo_parameter')
         ]
     )
 
@@ -77,7 +77,7 @@ def generate_launch_description():
         package    = 'erp42_racing_gazebo',
         executable = 'gazebo_bridge',
         output     = 'screen',
-        parameters = [LaunchConfiguration('erp42_racing_gazebo_parameter')],
+        parameters = [LaunchConfiguration('gazebo_parameter')],
     )
 
     # Spawn ERP42 Racing entity in Gazebo
@@ -85,7 +85,7 @@ def generate_launch_description():
         package    = "gazebo_ros",
         executable = "spawn_entity.py",
         output     = "screen",
-        parameters = [LaunchConfiguration('erp42_racing_gazebo_parameter')],
+        parameters = [LaunchConfiguration('gazebo_parameter')],
         arguments  = [
             "-topic" , "/erp42_racing/robot_description",
             "-entity", "erp42_racing",
@@ -106,11 +106,11 @@ def generate_launch_description():
         name       = 'rviz2',
         output     = 'screen',
         arguments  = ['-d', LaunchConfiguration('rviz_config_file')],
-        parameters = [LaunchConfiguration('erp42_racing_gazebo_parameter')]
+        parameters = [LaunchConfiguration('gazebo_parameter')]
     )
 
     return LaunchDescription([
-        erp42_racing_gazebo_parameter,
+        gazebo_parameter,
         world_file,
         vehicle_description_file,
         rviz_config_file,
