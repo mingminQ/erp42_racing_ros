@@ -26,7 +26,7 @@ $ rosdep install --rosdistro humble --from-paths src --ignore-src -r -y
 # Package overview
 For more information about the package, please read the README.md at the link below.
 
-- **ERP42 Racing gazebo simulation :** [erp42_racing_gazebo_sim](https://github.com/mingminQ/erp42_racing_ros/tree/humble-harmonic/src/erp42_racing_gazebo)
+- **ERP42 Racing gazebo simulation :** [erp42_racing_gazebo_sim](https://github.com/mingminQ/erp42_racing_ros/tree/humble-harmonic/src/erp42_racing_gazebo_sim)
 
 - **ERP42 Racing RQT Plugin :** [erp42_racing_rqt_plugin](https://github.com/mingminQ/erp42_racing_ros/tree/humble-harmonic/src/erp42_racing_rqt_plugin)
 
