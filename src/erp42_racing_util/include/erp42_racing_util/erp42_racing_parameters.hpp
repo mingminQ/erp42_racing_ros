@@ -34,13 +34,13 @@ namespace erp42_racing_util
     static constexpr double CHASSIS_HEIGHT {0.822};
 
     static constexpr double WHEELBASE   {1.212};
-    static constexpr double FRONT_TREAD {0.938};
-    static constexpr double REAR_TREAD  {0.970};
+    static constexpr double FRONT_TREAD {0.970};
+    static constexpr double REAR_TREAD  {0.938};
 
-    static constexpr double FRONT_WHEEL_RADIUS {0.290};
-    static constexpr double FRONT_WHEEL_WIDTH  {0.200};
-    static constexpr double REAR_WHEEL_RADIUS  {0.280};
-    static constexpr double REAR_WHEEL_WIDTH   {0.170};
+    static constexpr double FRONT_WHEEL_RADIUS {0.280};
+    static constexpr double FRONT_WHEEL_WIDTH  {0.170};
+    static constexpr double REAR_WHEEL_RADIUS  {0.290};
+    static constexpr double REAR_WHEEL_WIDTH   {0.200};
 
     static constexpr double MAX_STEERING {0.34906585039};
     static constexpr double MAX_SPEED    {5.5};
