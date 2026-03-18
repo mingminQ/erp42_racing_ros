@@ -85,17 +85,20 @@ void erp42_racing_rqt_plugin::ControlPanelPlugin::initPlugin(qt_gui_cpp::PluginC
     );
 
     bind_slider_spin_box(
-        control_panel_widget_->speed_slider, control_panel_widget_->speed_spin_box,
+        control_panel_widget_->speed_slider, 
+        control_panel_widget_->speed_spin_box,
         0.0, 5.5, 0.1
     );
 
     bind_slider_spin_box(
-        control_panel_widget_->steering_slider, control_panel_widget_->steering_spin_box,
+        control_panel_widget_->steering_slider, 
+        control_panel_widget_->steering_spin_box,
          -20.0, 20.0, 1.0
     );
 
     bind_slider_spin_box(
-        control_panel_widget_->brake_slider, control_panel_widget_->brake_spin_box, 
+        control_panel_widget_->brake_slider, 
+        control_panel_widget_->brake_spin_box, 
         0, 100, 10
     );
 
@@ -211,19 +214,23 @@ void erp42_racing_rqt_plugin::ControlPanelPlugin::restoreSettings(
  *  - Verifies the client is initialized and the service is available (wait up to 200 ms).
  *  - Disables the "Apply" button while the request is in flight to prevent duplicate sends.
  *  - Populates manual/auto, E-Stop, and gear fields based on current UI state.
- *  - Shows a warning dialog on common errors (uninitialized client, service unavailable, apply failure).
+ *  - Shows a warning dialog on common errors.
  */
 void erp42_racing_rqt_plugin::ControlPanelPlugin::on_apply_mode_command()
 {
     if(!mode_command_client_)
     {
-        QMessageBox::warning(widget_, "ERROR", "Service client is not initialized.");
+        QMessageBox::warning(widget_, 
+            "ERROR", "Service client is not initialized."
+        );
         return;
     }
 
     if(!mode_command_client_->wait_for_service(200ms))
     {
-        QMessageBox::warning(widget_, "ERROR", "\"/erp42_racing/mode_command\" service is not available.");
+        QMessageBox::warning(widget_, 
+            "ERROR", "\"/erp42_racing/mode_command\" service is not available."
+        );
         return;
     }
 
@@ -295,7 +302,11 @@ void erp42_racing_rqt_plugin::ControlPanelPlugin::on_apply_mode_command()
  * @param step Increment used for both the slider step and the spin box single step.
  */
 void erp42_racing_rqt_plugin::ControlPanelPlugin::bind_slider_spin_box(
-    QSlider *slider, QDoubleSpinBox *spin_box, double lower_bound, double upper_bound, double step
+    QSlider *slider, 
+    QDoubleSpinBox *spin_box, 
+    double lower_bound, 
+    double upper_bound, 
+    double step
 )
 {
     // Slider settings
@@ -338,7 +349,11 @@ void erp42_racing_rqt_plugin::ControlPanelPlugin::bind_slider_spin_box(
  * @param step Increment used for both the slider step and the spin box single step.
  */
 void erp42_racing_rqt_plugin::ControlPanelPlugin::bind_slider_spin_box(
-    QSlider *slider, QSpinBox *spin_box, int lower_bound, int upper_bound, int step
+    QSlider *slider, 
+    QSpinBox *spin_box, 
+    int lower_bound, 
+    int upper_bound, 
+    int step
 )
 {
     // Slider settings

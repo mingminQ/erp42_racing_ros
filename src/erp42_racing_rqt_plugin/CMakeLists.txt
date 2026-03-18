@@ -9,6 +9,7 @@ project(erp42_racing_rqt_plugin)
 # Find required packages
 # --------------------------------------------------------------------------------------------------
 find_package(erp42_racing_cmake REQUIRED)
+find_package(Qt5 REQUIRED COMPONENTS Core Widgets)
 erp42_racing_package()
 
 # --------------------------------------------------------------------------------------------------
