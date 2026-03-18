@@ -61,6 +61,10 @@ erp42_racing_serial::SerialBridge::SerialBridge(const rclcpp::NodeOptions &optio
  */
 erp42_racing_serial::SerialBridge::~SerialBridge()
 {
+    // Cancel timer
+    timer_->cancel();
+    timer_.reset();
+
     // Close and deallocate serial port
     if(!serial_port_)
     {
@@ -198,7 +202,8 @@ void erp42_racing_serial::SerialBridge::timer_callback()
  */
 void erp42_racing_serial::SerialBridge::mode_command_callback(
     const erp42_racing_msgs::srv::ModeCommand::Request::SharedPtr request,
-    erp42_racing_msgs::srv::ModeCommand::Response::SharedPtr response)
+    erp42_racing_msgs::srv::ModeCommand::Response::SharedPtr response
+)
 {
     // Control mode
     tx_packet_[TX::CONTROL_MODE] = !(request->manual_mode);
@@ -221,7 +226,9 @@ void erp42_racing_serial::SerialBridge::mode_command_callback(
  *   - Adjusts steering by offset, clamps to ±max_steering_rad_, and converts to raw units.  
  *   - Inserts brake value directly into the packet.
  */
-void erp42_racing_serial::SerialBridge::control_command_callback(const erp42_racing_msgs::msg::ControlCommand::SharedPtr msg)
+void erp42_racing_serial::SerialBridge::control_command_callback(
+    const erp42_racing_msgs::msg::ControlCommand::SharedPtr msg
+)
 {
     // Speed (m/s to motor raw command)
     double speed = msg->speed < 0 ? 0 : msg->speed;
@@ -247,9 +254,6 @@ void erp42_racing_serial::SerialBridge::control_command_callback(const erp42_rac
 /** @brief Initializes timers, publishers, subscriptions, and the serial port. */
 void erp42_racing_serial::SerialBridge::initialize_node()
 {
-    // Timer
-    timer_ = this->create_wall_timer(20ms, std::bind(&SerialBridge::timer_callback, this));
-
     // Publishers
     feedback_pub_ = this->create_publisher<erp42_racing_msgs::msg::Feedback>(
         "/erp42_racing/feedback",
@@ -279,6 +283,9 @@ void erp42_racing_serial::SerialBridge::initialize_node()
     {
         serial_port_->open_port();
     }
+
+    // Timer
+    timer_ = this->create_wall_timer(20ms, std::bind(&SerialBridge::timer_callback, this));
 }
 
 /** @brief Declares and retrieves ROS2 parameters for serial and ERP42 Racing configuration. */

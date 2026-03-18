@@ -72,7 +72,10 @@ namespace erp42_racing_serial
          * @param expected_packet_size Number of bytes expected to read.
          * @return 'true' if the received packet size matches 'expected_packet_size'; 'false' otherwise.
          */
-        bool receive_packet(unsigned char *rx_packet, const unsigned int &expected_packet_size) const;
+        bool receive_packet(
+            unsigned char *rx_packet, 
+            const unsigned int &expected_packet_size
+        ) const;
 
         /**
          * @brief Transmits a packet over the serial port.
@@ -80,7 +83,10 @@ namespace erp42_racing_serial
          * @param expected_packet_size Number of bytes to transmit.
          * @return 'true' if the data was written successfully; 'false' otherwise.
          */
-        bool transmit_packet(const unsigned char *tx_packet, const unsigned int &expected_packet_size) const;
+        bool transmit_packet(
+            const unsigned char *tx_packet, 
+            const unsigned int &expected_packet_size
+        ) const;
 
     private:
 

@@ -114,8 +114,11 @@ bool erp42_racing_serial::SerialPort::receive_packet(
     ssize_t received_packet_size = read(file_descriptor_, rx_packet, expected_packet_size);
     if(received_packet_size != expected_packet_size)
     {
-        ERP42_RACING_ERROR("SerialPort::receive_packet() Expected size is %d, but received size is %zd.",
-            expected_packet_size, received_packet_size);
+        ERP42_RACING_ERROR(
+            "SerialPort::receive_packet() Expected size is %d, but received size is %zd.",
+            expected_packet_size, 
+            received_packet_size
+        );
         return false;
     }
 
@@ -141,8 +144,11 @@ bool erp42_racing_serial::SerialPort::transmit_packet(
     ssize_t transmitted_packet_size = write(file_descriptor_, tx_packet, expected_packet_size);
     if(transmitted_packet_size != expected_packet_size)
     {
-        ERP42_RACING_ERROR("SerialPort::transmit_packet() Expected size is %d, but transmitted size is %zd.",
-            expected_packet_size, transmitted_packet_size);
+        ERP42_RACING_ERROR(
+            "SerialPort::transmit_packet() Expected size is %d, but transmitted size is %zd.",
+            expected_packet_size, 
+            transmitted_packet_size
+        );
         return false;
     }
 
@@ -194,7 +200,9 @@ void erp42_racing_serial::SerialPort::initialize_port()
 
     default:
         file_descriptor_ = -1;
-        throw erp42_racing_util::Exception("SerialPort::initialize_port() Invalid baud_rate, use 9600 or 115200.");
+        throw erp42_racing_util::Exception(
+            "SerialPort::initialize_port() Invalid baud_rate, use 9600 or 115200."
+        );
     }
 
     tty.c_cc[VMIN]  = 20;
