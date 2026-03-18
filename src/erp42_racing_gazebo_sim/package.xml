@@ -24,7 +24,7 @@
     <depend>erp42_racing_util</depend>
 
     <!-- Execution dependencies -->
-    <exec_depend>ros_gz                   </exec_depend>
+    <exec_depend>ros_gzharmonic           </exec_depend>
     <exec_depend>joint_state_publisher_gui</exec_depend>
     <exec_depend>joint_state_publisher    </exec_depend>
     <exec_depend>xacro                    </exec_depend>
