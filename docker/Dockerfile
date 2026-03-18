@@ -1,12 +1,12 @@
 # ==================================================================================================
-# Dockerfile for ROS2 Humble development environment
+# Dockerfile for ROS2 Jazzy development environment
 # Author: Minkyu Kil (mgkilprg@gmail.com)
 # ==================================================================================================
 
 # --------------------------------------------------------------------------------------------------
 # Base image and environment variables
 # --------------------------------------------------------------------------------------------------
-FROM ubuntu:22.04
+FROM ubuntu:24.04
 
 # Noninteractive mode
 ENV DEBIAN_FRONTEND=noninteractive
@@ -19,7 +19,7 @@ ENV LIBGL_ALWAYS_INDIRECT=1
 RUN sed -i \
     -e 's|http://archive.ubuntu.com/ubuntu|http://mirror.kakao.com/ubuntu|g' \
     -e 's|http://security.ubuntu.com/ubuntu|http://mirror.kakao.com/ubuntu|g' \
-    /etc/apt/sources.list
+    /etc/apt/sources.list.d/ubuntu.sources
 
 # --------------------------------------------------------------------------------------------------
 # Ubuntu packages
@@ -34,7 +34,7 @@ RUN apt-get update && apt-get install -y \
     git
 
 # --------------------------------------------------------------------------------------------------
-# ROS : Humble
+# ROS : Jazzy
 # --------------------------------------------------------------------------------------------------
 
 # Set locale
@@ -58,15 +58,15 @@ RUN curl -sSL https://raw.githubusercontent.com/ros/rosdistro/master/ros.key -o 
 
 # Install ROS2 packages
 RUN apt-get update && apt-get upgrade -y && apt-get install -y \
-    ros-humble-desktop \
+    ros-jazzy-desktop \
     ros-dev-tools \
-    ros-humble-rmw-cyclonedds-cpp
+    ros-jazzy-rmw-cyclonedds-cpp
     
 ENV RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
 
 # Install additional ROS2 packages
 RUN apt-get update && apt-get install -y \
-    ros-humble-rqt-tf-tree
+    ros-jazzy-rqt-tf-tree
 
 # --------------------------------------------------------------------------------------------------
 # Gazebo : Harmonic
@@ -80,8 +80,7 @@ RUN curl https://packages.osrfoundation.org/gazebo.gpg \
     | tee /etc/apt/sources.list.d/gazebo-stable.list > /dev/null
 
 RUN apt-get update && apt-get install -y \
-    gz-harmonic \
-    ros-humble-ros-gzharmonic
+    gz-harmonic
 
 # --------------------------------------------------------------------------------------------------
 # Create user
@@ -126,15 +125,15 @@ RUN set -eux; \
 WORKDIR /home/${USERNAME}/erp42_racing_ros
 COPY . .
 RUN rosdep init && rosdep update
-RUN rosdep install --rosdistro humble --from-paths src --ignore-src -r -y
-RUN bash -lc "source /opt/ros/humble/setup.bash && colcon build --symlink-install"
+RUN rosdep install --rosdistro jazzy --from-paths src --ignore-src -r -y
+RUN bash -lc "source /opt/ros/jazzy/setup.bash && colcon build --symlink-install"
 
 # --------------------------------------------------------------------------------------------------
 # Entrypoints
 # --------------------------------------------------------------------------------------------------
 
 # Source ROS2 and workspace setup files, then launch bash
-RUN echo "source /opt/ros/humble/setup.bash" >> /etc/bash.bashrc
+RUN echo "source /opt/ros/jazzy/setup.bash" >> /etc/bash.bashrc
 RUN echo "source /home/${USERNAME}/erp42_racing_ros/install/setup.bash" >> /etc/bash.bashrc
 USER ${USERNAME}
 CMD ["bash"]

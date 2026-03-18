@@ -62,4 +62,4 @@ docker run                                                             \
     -e NVIDIA_VISIBLE_DEVICES=all                                      \
     -e NVIDIA_DRIVER_CAPABILITIES=all                                  \
     --gpus all                                                         \
-    erp42-racing-ros:humble
+    erp42-racing-ros:jazzy

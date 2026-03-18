@@ -3,14 +3,14 @@
 set -uo pipefail
 
 #
-# Build Docker image for erp42-racing-ros:humble
+# Build Docker image for erp42-racing-ros:jazzy
 # - Uses BuildKit/Buildx when available for caching and performance.
 # - Respects optional cache env vars:
 #     BUILDX_CACHE_FROM (e.g., "type=local,src=/tmp/.buildx-cache")
 #     BUILDX_CACHE_TO   (e.g., "type=local,dest=/tmp/.buildx-cache-new,mode=max")
 #
 
-IMAGE_TAG=${IMAGE_TAG:-erp42-racing-ros:humble}
+IMAGE_TAG=${IMAGE_TAG:-erp42-racing-ros:jazzy}
 DOCKERFILE_PATH=${DOCKERFILE_PATH:-docker/Dockerfile}
 BUILD_CONTEXT=${BUILD_CONTEXT:-.}
 
