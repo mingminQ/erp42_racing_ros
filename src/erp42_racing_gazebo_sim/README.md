@@ -14,7 +14,7 @@ $ ros2 launch erp42_racing_gazebo_sim gazebo_sim.launch.py
 
 <br/><br/>
 
-## liberp42_racing_control.so
+## liberp42_racing_gazebo_control.so
 If you use the **erp42_racing_description.xacro** macro, you can use pre-set values, and they can be used as follows.
 ``` xml
 <!-- Include files -->
@@ -29,20 +29,20 @@ If you use the **erp42_racing_description.xacro** macro, you can use pre-set val
 
 </br>
 
-**liberp42_racing_control.so** is a plugin that enables the simulation of the ERP42 Racing platform using the same interface as **serial_bridge**.
+**liberp42_racing_gazebo_control.so** is a plugin that enables the simulation of the ERP42 Racing platform using the same interface as **serial_bridge**.
 ```xml
 <gazebo>
     
     ...
 
-    <plugin name="gz::sim::systems::ERP42RacingControl" filename="liberp42_racing_control.so">
+    <plugin name="gz::sim::systems::ERP42RacingControl" filename="liberp42_racing_gazebo_control.so">
 
-        <left_steer_joint>  : Left steer joint name
-        <right_steer_joint> : Right steer joint name
-        <front_left_joint>  : Front left wheel joint name
-        <front_right_joint> : Front right wheel joint name
-        <rear_left_joint>   : Rear left wheel joint name
-        <rear_right_joint>  : Rear right wheel joint name
+        <left_steering_joint>     : Left steer joint name
+        <right_steering_joint>    : Right steer joint name
+        <front_left_wheel_joint>  : Front left wheel joint name
+        <front_right_wheel_joint> : Front right wheel joint name
+        <rear_left_wheel_joint>   : Rear left wheel joint name
+        <rear_right_wheel_joint>  : Rear right wheel joint name
 
         <wheel_base>         : Wheelbase length in meter
         <kingpin_width>      : Kingpin width in meter
@@ -51,8 +51,8 @@ If you use the **erp42_racing_description.xacro** macro, you can use pre-set val
         <front_wheel_radius> : Front wheel radius in meter
         <rear_wheel_radius>  : Rear wheel radius in meter
 
-        <steer_limit>        : Max steer angle
-        <steer_p_gain>       : Steer angle P gain
+        <steering_limit>     : Max steer angle
+        <steering_p_gain>    : Steer angle P gain
         <velocity_limit>     : Max velocity in m/s
         <acceleration_limit> : Max acceleration in m/s^2, It affects convergence to the target speed.
         <brake_deceleration> : Brake deceleration in m/s^2, It is used when executing a break command.
@@ -93,7 +93,7 @@ The ModeCommand.srv service QoS profile is the system default.
 | Durability  | **Volatile**   |
 
 ### Parameters
-You can set the parameters below, but they are already included in the **liberp42_racing_control.so** plugin.  
+You can set the parameters below, but they are already included in the **liberp42_racing_gazebo_control.so** plugin.  
 Also, things like **steering_offset_deg** are not very useful because this is a simulation.
 | Parameter Name          | Unit | Description                                                                                           |
 | ----------------------- | ---- | ----------------------------------------------------------------------------------------------------- |
