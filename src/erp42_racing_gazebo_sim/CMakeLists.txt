@@ -16,11 +16,11 @@ erp42_racing_package()
 # --------------------------------------------------------------------------------------------------
 # ERP42 Racing control plugin (Gazebo gz-sim system plugin with direct ROS 2 interface)
 # --------------------------------------------------------------------------------------------------
-ament_auto_add_library(erp42_racing_control SHARED
-    plugins/erp42_racing_control.cpp
+ament_auto_add_library(erp42_racing_gazebo_control SHARED
+    plugins/erp42_racing_gazebo_control.cpp
 )
 
-target_link_libraries(erp42_racing_control
+target_link_libraries(erp42_racing_gazebo_control
     gz-sim8::gz-sim8
     gz-plugin2::register
 )

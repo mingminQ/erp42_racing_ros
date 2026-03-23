@@ -15,7 +15,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  * 
- * @file    erp42_racing_control.hpp
+ * @file    erp42_racing_gazebo_control.hpp
  * @brief   ERP42 Racing gazebo-sim control plugin
  * @author  Minkyu Kil
  * @date    2026-03-18
@@ -24,8 +24,8 @@
  * -------------------------------------------------------------------------------------------------
  */
 
-#ifndef ERP42_RACING_GAZEBO_SIM__ERP42_RACING_CONTROL_HPP_
-#define ERP42_RACING_GAZEBO_SIM__ERP42_RACING_CONTROL_HPP_
+#ifndef ERP42_GAZEBO_SIM__ERP42_RACING_GAZEBO_CONTROL_HPP_
+#define ERP42_GAZEBO_SIM__ERP42_RACING_GAZEBO_CONTROL_HPP_
 
 #include "gz/sim/System.hh"
 #include <memory>
@@ -36,11 +36,11 @@ namespace gz::sim
     {
         namespace systems
         {
-            /** @brief Private implementation for ERP42RacingControl */
-            class ERP42RacingControlPrivate;
+            /** @brief Private implementation for ERP42RacingGazeboControl */
+            class ERP42RacingGazeboControlPrivate;
 
             /**
-             * @brief ERP42RacingControl is a Gazebo simulation plugin that controls the ERP42 Racing model.
+             * @brief ERP42RacingGazeboControl is a Gazebo simulation plugin that controls the ERP42 Racing model.
              * @details 
              *  - Subscribes to control commands
              *  - Manages the vehicle's state based on mode commands
@@ -49,7 +49,7 @@ namespace gz::sim
              *  - Implements a simple proportional controller for steering and velocity control
              *  - Handles emergency stop and manual mode by overriding control commands
              */
-            class ERP42RacingControl : 
+            class ERP42RacingGazeboControl : 
                 public System, 
                 public ISystemConfigure, 
                 public ISystemPreUpdate, 
@@ -58,13 +58,13 @@ namespace gz::sim
             public:
 
                 /**
-                 * @brief Constructor for ERP42RacingControl plugin
+                 * @brief Constructor for ERP42RacingGazeboControl plugin
                  * @details Initializes internal state and prepares for configuration
                  */
-                ERP42RacingControl();
+                ERP42RacingGazeboControl();
 
-                /** @brief Destructor for ERP42RacingControl plugin */
-                ~ERP42RacingControl() override = default;
+                /** @brief Destructor for ERP42RacingGazeboControl plugin */
+                ~ERP42RacingGazeboControl() override;
 
                 /**
                  * @brief Configure plugin based on SDF parameters and initializes ROS2 interfaces
@@ -109,13 +109,13 @@ namespace gz::sim
             private:
 
                 /**
-                 * @brief Pointer to the private implementation of the ERP42RacingControl plugin
+                 * @brief Pointer to the private implementation of the ERP42RacingGazeboControl plugin
                  * @details Encapsulates all internal data and implementation details 
                  * to keep the public interface clean
                  */
-                std::unique_ptr<ERP42RacingControlPrivate> dataPtr;
+                std::unique_ptr<ERP42RacingGazeboControlPrivate> dataPtr;
 
-            }; // class ERP42RacingControl
+            }; // class ERP42RacingGazeboControl
 
         } // namespace systems
 
@@ -123,4 +123,4 @@ namespace gz::sim
 
 } // namespace gz::sim
 
-#endif // ERP42_RACING_GAZEBO_SIM__ERP42_RACING_CONTROL_HPP_
+#endif // ERP42_GAZEBO_SIM__ERP42_RACING_GAZEBO_CONTROL_HPP_
