@@ -20,10 +20,8 @@
     <depend>rclcpp_components</depend>
     <depend>rclcpp           </depend>
     <depend>nav_msgs         </depend>
-
-    <depend>erp42_racing_msgs       </depend>
-    <depend>erp42_racing_util       </depend>
-    <depend>erp42_racing_description</depend>
+    <depend>erp42_racing_msgs</depend>
+    <depend>erp42_racing_util</depend>
 
     <!-- Export build system information -->
     <export>
