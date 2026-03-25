@@ -16,7 +16,7 @@
         <xacro:property name  = "izz" value = "${1/2  * mass * radius * radius}"/>
 
         <!-- Steer properties -->
-        <xacro:property name = "dummy_mass"   value = "5"  />
+        <xacro:property name = "dummy_mass"   value = "1"  />
         <xacro:property name = "dummy_radius" value = "0.1"/>
 
         <xacro:property name = "dummy_ixx" value = "${3/5 * dummy_mass * dummy_radius * dummy_radius}"/>
@@ -125,7 +125,7 @@
             <limit 
                 lower    = "${-1.2 * radians(20)}"
                 upper    = "${ 1.2 * radians(20)}"
-                velocity = "${ 2.0 * radians(20)}"
+                velocity = "${ 4.0 * radians(20)}"
                 effort   = "1000000.0"
             />
 
@@ -145,14 +145,14 @@
             <axis xyz = "0 1 0"/>
 
             <!-- Limits -->
-            <limit effort = "1000000.0" velocity = "${10.0 / radius}"/>
+            <limit effort = "360.0" velocity = "${5.5 / radius}"/>
 
         </joint>
 
         <!-- Friction settings -->
         <gazebo reference="${wheel_link}">
-            <mu1>0.75</mu1>
-            <mu2>0.75</mu2>
+            <mu1>0.9</mu1>
+            <mu2>0.9</mu2>
         </gazebo>
 
     </xacro:macro>
