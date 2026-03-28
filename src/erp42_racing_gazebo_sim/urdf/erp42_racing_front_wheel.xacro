@@ -113,7 +113,7 @@
             <child  link = "${wheel_link}_steer"/>
 
             <!-- Origin -->
-            <origin xyz = "${wheelbase/2} ${reflection * tread/2} 0" rpy = "0 0 0"/>
+            <origin xyz = "${wheelbase/2} ${reflection * tread/2} -0.01" rpy = "0 0 0"/>
 
             <!-- Rotation axis -->
             <axis xyz = "0 0 1"/>
